@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV - Phạm Huỳnh Gia Bảo</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', 'Segoe UI', Arial, sans-serif;
+      background: #eaf6f6;
+      color: #22313f;
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 210px;
+      background: linear-gradient(180deg, #48c6ef 0%, #43e97b 100%);
+      color: #fff;
+      padding: 32px 0 0 0;
+      box-shadow: 2px 0 16px rgba(34,49,63,0.10);
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      border-radius: 0 28px 28px 0;
+      transition: left 0.25s, width 0.2s;
+      z-index: 100;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .sidebar nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 13px 30px;
+      border-radius: 0 18px 18px 0;
+      transition: background 0.2s, color 0.2s;
+      font-size: 1.09em;
+      letter-spacing: 0.5px;
+    }
+    .sidebar nav a:hover,
+    .sidebar nav a.active {
+      background: rgba(255,255,255,0.18);
+      color: #145a32;
+      font-weight: bold;
+    }
+    .main-content {
+      flex: 1;
+      padding: 0 28px;
+      max-width: 950px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 38px;
+      background: #e6fff9;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px rgba(34,49,63,0.07);
+      padding: 32px 26px;
+    }
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 210px;
+      background: linear-gradient(90deg, #48c6ef 60%, #43e97b 100%);
+      color: #fff;
+      border-radius: 24px;
+      margin-bottom: 38px;
+      box-shadow: 0 4px 22px rgba(34,49,63,0.10);
+    }
+    .hero h1 {
+      font-size: 2.7em;
+      margin: 0 0 12px 0;
+      font-family: 'Quicksand', 'Segoe Script', cursive, sans-serif;
+      letter-spacing: 2.5px;
+      text-shadow: 2px 2px 14px #48c6ef;
+      color: #145a32; /* Màu xanh lục bảo đậm, nổi bật trên nền gradient */
+    }
+    .hero p {
+      font-size: 1.22em;
+      margin: 0;
+      font-weight: 500;
+    }
+    h2 {
+      color: #009688; /* Xanh ngọc đậm, hài hòa với nền */
+      margin-top: 0px;
+      font-size: 1.38em;
+      letter-spacing: 1px;
+    }
+    h3 {
+      color: #6d2600; /* Xanh ngọc đậm hơn cho tiêu đề phụ */
+      font-size: 1.15em;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 0.7px;
+    }
+    ul {
+      margin: 10px 0 0 20px;
+    }
+    .skills-list, .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px 26px;
+      list-style: none;
+      padding: 0;
+      margin: 10px 0 0 0;
+    }
+    .skills-list li, .interests-list li {
+      background: #b2fefa;
+      color: #145a32;
+      padding: 7px 18px;
+      border-radius: 20px;
+      font-size: 1em;
+      font-weight: 500;
+      box-shadow: 0 1px 4px rgba(34,49,63,0.06);
+    }
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .project-card {
+      background: #d0f5ee;
+      border-radius: 14px;
+      padding: 18px;
+      flex: 1 1 270px;
+      min-width: 220px;
+      box-shadow: 0 1px 8px rgba(34,49,63,0.08);
+    }
+    .project-card h3 {
+      margin: 0 0 8px 0;
+      font-size: 1.13em;
+      color: #43e97b;
+    }
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .contact-list li {
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      font-size: 1em;
+      color: #43e97b;
+      margin: 36px 0 14px 0;
+      padding: 14px 0 0 0;
+    }
+    /* Hamburger button styles */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 200;
+      background: #48c6ef;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(34,49,63,0.10);
+    }
+    .hamburger span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      margin: 6px 0;
+      background: #fff;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+    /* New styles for about section */
+    .about-flex {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #48c6ef;
+      box-shadow: 0 2px 12px rgba(34,49,63,0.10);
+      background: #fff;
+      flex-shrink: 0;
+    }
+    /* Responsive styles */
+    @media (max-width: 900px) {
+      .main-content { padding: 0 10px; }
+      .sidebar { width: 140px; font-size: 0.97em; }
+    }
+    @media (max-width: 700px) {
+      body { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        left: -210px;
+        top: 0;
+        width: 180px;
+        height: 100vh;
+        border-radius: 0 24px 24px 0;
+        box-shadow: 2px 0 16px rgba(34,49,63,0.10);
+        padding: 32px 0 0 0;
+        transition: left 0.25s;
+      }
+      .sidebar.open {
+        left: 0;
+      }
+      .sidebar nav {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 28px;
+        width: 100%;
+      }
+      .sidebar nav a {
+        border-radius: 0 18px 18px 0;
+        padding: 13px 30px;
+        font-size: 1.09em;
+      }
+      .hamburger {
+        display: block;
+      }
+      .main-content {
+        padding-top: 64px;
+      }
+    }
+    @media (max-width: 480px) {
+      .main-content { padding: 0 2px; }
+      section { padding: 14px 6px; }
+      .hero { padding: 20px 4px; }
+      .sidebar { width: 100vw; left: -100vw; border-radius: 0 0 24px 24px; }
+      .sidebar.open { left: 0; }
+      .sidebar nav a { font-size: 0.95em; }
+      .about-flex { flex-direction: column; align-items: center; gap: 14px; }
+    }
+  </style>
+  <!-- Google Fonts for Quicksand -->
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <button class="hamburger" aria-label="Mở menu" onclick="toggleSidebar()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <aside class="sidebar" id="sidebar">
+    <nav>
+      <a href="#hero" onclick="closeSidebar()">Trang chủ</a>
+      <a href="#about" onclick="closeSidebar()">Giới thiệu</a>
+      <a href="#career" onclick="closeSidebar()">Mục tiêu</a>
+      <a href="#skills" onclick="closeSidebar()">Sở thích & Kỹ năng</a>
+      <a href="#languages" onclick="closeSidebar()">Ngôn ngữ</a>
+      <a href="#awards" onclick="closeSidebar()">Chứng chỉ/Giải thưởng</a>
+      <a href="#projects" onclick="closeSidebar()">Dự án</a>
+      <a href="#contact" onclick="closeSidebar()">Liên hệ</a>
+      <a href="" onclick="closeSidebar()">Quay lại trang chính</a>
+    </nav>
+  </aside>
+  <div class="main-content">
+    <section id="hero" class="hero">
+      <h1>Hello I'm Bảo Phạm</h1>
+      <p>This is my CV</p>
+    </section>
+
+    <section id="about">
+      <h2>Giới thiệu bản thân</h2>
+      <div class="about-flex">
+        <img class="avatar" src="/avata.jpg" alt="">
+        <div>
+          <p>"Chào bạn! Tôi là Phạm Huỳnh Gia Bảo, một sinh viên CNTT luôn khao khát kiến tạo. Với tôi, phần mềm không chỉ là code, mà là những giải pháp đột phá biến ý tưởng thành hiện thực, định hình tương lai."
+
+</p>
+          <ul>
+            <li><b>Ngày sinh:</b> 29/12/2005</li>
+            <li><b>Giới tính:</b> Nam</li>
+            <li><b>Địa chỉ:</b> TP. Hồ Chí Minh</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="career">
+      <h2>Mục tiêu nghề nghiệp</h2>
+      <p>Khát vọng của tôi là chinh phục vị trí Fullstack Developer chuyên nghiệp, làm chủ nghệ thuật kiến trúc và phát triển web hiện đại. Tôi tin rằng, bằng khả năng của mình, tôi có thể tạo ra những đóng góp ý nghĩa cho sự lớn mạnh của cộng đồng lập trình.</p>
+    </section>
+
+    <section id="skills">
+      <h3>Sở thích</h3>
+      <ul class="interests-list">
+        <li>Chụp hình</li>
+        <li>Thể thao điện tử</li>
+        <li>Âm nhạc</li>
+        <li>Du lịch</li>
+      </ul>
+      <h3>Kỹ năng</h3>
+      <ul class="skills-list">
+        <li>HTML/CSS</li>
+        <li>JavaScript</li>
+        <li>ReactJS</li>
+        <li>Git</li>
+        <li>SQL</li>
+        <li>Python</li>
+        <li>Django</li>
+      </ul>
+    </section>
+
+    <section id="languages">
+      <h2>Ngôn ngữ đã học</h2>
+      <ul>
+        <li>Tiếng Việt (Bản ngữ)</li>
+        <li>Tiếng Anh (Giao tiếp tốt)</li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <h2>Chứng chỉ / Giải thưởng</h2>
+      <ul>
+        <li>Chứng chỉ: Không có</li>
+        <li>Giải thưởng: Không có</li>
+      </ul>
+    </section>
+
+    <section id="projects">
+      <h2>Dự án</h2>
+      <div class="projects">
+        <div class="project-card">
+          <h3>Wesbite quản lí sân cầu lông</h3>
+          <p>Sử dụng framework Django và SQL server để tạo dựng trang web quản lí đặt lịch sân cầu lông.</p>
+        </div>
+        <div class="project-card">
+          <h3>Webiste điều trị HIV</h3>
+          <p>Phát triển website chuyên cung cấp các kiến thức, thông tin về bệnh HIV, liên hệ với với các bác sĩ chuyên ngành truyền nhiễm, được hỗ trợ đặt lịch điều trị.</p>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Liên hệ</h2>
+      <ul class="contact-list">
+        <li><b>Email:</b> baopgh1564@ut.edu.vn</li>
+        <li><b>GitHub:</b> https://github.com/Bao1564 </li>
+        <li><b>Facebook:</b> https://www.facebook.com/bao.pham.950182 </li>
+      </ul>
+    </section>
+
+    <footer>
+      &copy; 2025 Phạm Huỳnh Gia Bảo. All rights reserved.
+    </footer>
+  </div>
+  <script>
+    function toggleSidebar() {
+      document.getElementById('sidebar').classList.toggle('open');
+    }
+    function closeSidebar() {
+      if(window.innerWidth <= 700) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    }
+    // Đóng sidebar khi click ngoài menu trên mobile
+    document.addEventListener('click', function(e) {
+      const sidebar = document.getElementById('sidebar');
+      const hamburger = document.querySelector('.hamburger');
+      if(window.innerWidth <= 700 && sidebar.classList.contains('open')) {
+        if (!sidebar.contains(e.target) && !hamburger.contains(e.target)) {
+          sidebar.classList.remove('open');
+        }
+      }
+    });
+    // Đóng sidebar khi resize lên desktop
+    window.addEventListener('resize', function() {
+      if(window.innerWidth > 700) {
+        document.getElementById('sidebar').classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
